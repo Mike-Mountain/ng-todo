@@ -38,10 +38,16 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 20% 70% 10%;
 }
 
-.menu-button {
+.header-pub {
+  grid-template-rows: 2rem 1fr;
+}
+.header-auth {
+  grid-template-rows: 2rem 1fr 10%;
+}
+
+.menu-toggle {
   width: 100%;
   grid-row: 1/2;
   grid-column: 1/2;
@@ -49,6 +55,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
+}
+
+.menu-button {
+  border: none;
+  background: none;
 }
 
 .welcome {

@@ -6,6 +6,8 @@ import {
   animate,
   transition
 } from '@angular/animations';
+import {SessionQuery} from '../../../authentication/store/session/session.query';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -31,11 +33,15 @@ import {
 export class LayoutComponent implements OnInit {
 
   menuState = 'closed';
+  isLoggedIn = false;
 
-  constructor() {
+  constructor(private sessionQuery: SessionQuery) {
   }
 
   ngOnInit(): void {
+    this.sessionQuery.select().subscribe(session => {
+      this.isLoggedIn = session.token !== undefined;
+    });
   }
 
   toggleMenu(): void {
