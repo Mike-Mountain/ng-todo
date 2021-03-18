@@ -8,6 +8,7 @@ import {
 } from '@angular/animations';
 import {SessionQuery} from '../../../authentication/store/session/session.query';
 import {Observable} from 'rxjs';
+import {SessionUser} from '../../../authentication/store/session/session.model';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +17,7 @@ import {Observable} from 'rxjs';
   animations: [
     trigger('toggleMenu', [
       state('open', style({
-        width: '35%',
+        width: '45%',
         opacity: '1',
         zIndex: '10',
       })),
@@ -33,6 +34,7 @@ import {Observable} from 'rxjs';
 export class LayoutComponent implements OnInit {
 
   menuState = 'closed';
+  user$: Observable<SessionUser | undefined> | undefined;
   isLoggedIn = false;
 
   constructor(private sessionQuery: SessionQuery) {
@@ -42,6 +44,7 @@ export class LayoutComponent implements OnInit {
     this.sessionQuery.select().subscribe(session => {
       this.isLoggedIn = session.token !== undefined;
     });
+    this.user$ = this.sessionQuery.loggedInUser$;
   }
 
   toggleMenu(): void {

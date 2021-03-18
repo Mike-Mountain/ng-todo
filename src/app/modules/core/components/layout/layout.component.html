@@ -1,5 +1,8 @@
 <div class="background">
   <div class="app-container">
+    <div class="header-image">
+      <img src="assets/images/landscape.jpeg" alt="background-image">
+    </div>
     <div class="header" [ngClass]="isLoggedIn ? 'header-auth' : 'header-pub'">
       <div class="menu-toggle">
         <button class="menu-button" (click)="toggleMenu()">
@@ -7,11 +10,15 @@
         </button>
       </div>
       <div class="welcome">
-        <!--// TODO: If user, display username -->
-        <h1>Welcome!</h1>
+        <ng-container *ngIf="user$ | async as user; else publicWelcome">
+          <h1>Welcome {{user.username}}!</h1>
+        </ng-container>
+        <ng-template #publicWelcome>
+          <h1>Welcome!</h1>
+        </ng-template>
       </div>
       <div class="details">
-        Details
+        <img src="assets/images/angular_shield.png" alt="Angular Shield" width="100">
       </div>
       <div class="progress" *ngIf="isLoggedIn">
         <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">

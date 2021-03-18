@@ -1,10 +1,12 @@
+@import "src/scss/variables/variables";
+
 .background {
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: green;
+  background: $background;
 }
 
 .app-container {
@@ -13,8 +15,10 @@
   max-height: 750px;
   width: 100%;
   max-width: 450px;
+  //border: 3px solid white;
+  box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.4);
   display: grid;
-  grid-template-rows: 20% 1fr;
+  grid-template-rows: 30% 1fr;
   grid-template-columns: 0 1fr;
   background: white;
   z-index: 5;
@@ -35,9 +39,19 @@
 }
 
 .header {
+  position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-columns: 60% 40%;
+  z-index: 10;
+}
+
+.header-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  filter: blur(2px);
 }
 
 .header-pub {
@@ -76,8 +90,11 @@
   padding-right: .75rem;
   grid-row: 1/3;
   grid-column: 2/3;
-  border-left: 1px solid rgba(0, 0, 0, 0.7);
-  //background: rgba(0, 0, 0, 0.3);
+  border-left: 1px solid rgba($primary, 0.7);
+  background: rgba($primary, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .progress {
@@ -88,4 +105,11 @@
   .progress-bar {
     width: 100%;
   }
+}
+
+.content {
+  z-index: 8;
+  background: white;
+  width: 100.5%;
+  margin-left: -.25%;
 }

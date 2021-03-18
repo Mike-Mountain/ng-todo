@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Query, toBoolean} from '@datorama/akita';
 import {SessionStore} from './session.store';
-import {SessionState} from './session.model';
+import {SessionState, SessionUser} from './session.model';
 import {filter, map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class SessionQuery extends Query<SessionState> {
 
   public token$ = this.select(({token}) => token);
-  public loggedInUser$ = this.select().pipe(
-    filter(({user}) => toBoolean(user)),
-    map((x) => `${(x.user?.username)}`)
+  public loggedInUser$: Observable<SessionUser | undefined> = this.select().pipe(
+    map(item => item.user)
   );
 
   constructor(protected store: SessionStore) {
