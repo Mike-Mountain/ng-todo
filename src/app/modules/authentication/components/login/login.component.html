@@ -1,1 +1,36 @@
-<p>login works!</p>
+<section class="authentication">
+  <div class="card auth-card">
+    <div class="card-body">
+      <div class="auth-logo">
+        <img src="" alt="logo">
+      </div>
+      <h2 class="text-center">Login</h2>
+      <hr class="w-75 mx-auto">
+      <form class="form">
+        <div class="form-control">
+          <label>
+            Username
+            <input
+              type="text"
+              name="username"
+              [(ngModel)]="username"
+            >
+          </label>
+        </div>
+
+        <div class="form-control">
+          <label>
+            Password
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="password"
+            >
+          </label>
+        </div>
+
+        <button (click)="login()">Login</button>
+      </form>
+    </div>
+  </div>
+</section>

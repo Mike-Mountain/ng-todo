@@ -5,6 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CoreModule} from './modules/core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NG_ENTITY_SERVICE_CONFIG} from '@datorama/akita-ng-entity-service';
+import {AkitaNgDevtools} from '@datorama/akita-ngdevtools';
+import {environment} from '../environments/environment';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,10 +17,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
-    CoreModule
+    CoreModule,
+    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
-  providers: [],
+  providers: [{provide: NG_ENTITY_SERVICE_CONFIG, useValue: {baseUrl: environment.apiUrl}}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -138,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "ng-todo"
+  "defaultProject": "ng-todo",
+  "cli": {
+    "defaultCollection": "@datorama/akita"
+  }
 }

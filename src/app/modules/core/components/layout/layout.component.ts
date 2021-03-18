@@ -30,7 +30,7 @@ import {
 })
 export class LayoutComponent implements OnInit {
 
-  menuState = 'open';
+  menuState = 'closed';
 
   constructor() {
   }
