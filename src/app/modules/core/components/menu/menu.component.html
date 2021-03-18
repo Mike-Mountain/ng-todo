@@ -5,8 +5,13 @@
   <nav class="navigation">
     <a class="nav-item" routerLink="/">Home</a>
     <a class="nav-item" routerLink="/tasks">Tasks</a>
-    <a class="nav-item" routerLink="/auth/login">Login</a>
-    <a class="nav-item" routerLink="/auth/register">Register</a>
+    <ng-container *ngIf="isLoggedIn">
+      <a class="nav-item" (click)="logout()">Logout</a>
+    </ng-container>
+    <ng-container *ngIf="!isLoggedIn">
+      <a class="nav-item" routerLink="/auth/login">Login</a>
+      <a class="nav-item" routerLink="/auth/register">Register</a>
+    </ng-container>
   </nav>
   <div class="theme-toggle">
     Toggle theme

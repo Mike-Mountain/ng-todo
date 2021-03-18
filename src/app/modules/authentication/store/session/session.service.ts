@@ -24,4 +24,7 @@ export class SessionService extends BaseHttpService<any> {
     );
   }
 
+  public logout(): void {
+    this.sessionStore.logout();
+  }
 }

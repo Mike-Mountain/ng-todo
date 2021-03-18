@@ -27,7 +27,9 @@
       </div>
     </div>
     <aside class="menu" (click)="toggleMenu()" [@toggleMenu]="menuState">
-      <app-menu></app-menu>
+      <app-menu
+        [isLoggedIn]="isLoggedIn"
+      ></app-menu>
     </aside>
     <main class="content">
       <router-outlet></router-outlet>
