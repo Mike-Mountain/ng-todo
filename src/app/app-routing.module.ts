@@ -1,9 +1,12 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
+import {LandingComponent} from './modules/core/components/landing/landing.component';
 
 const routes: Routes = [
+  {path: 'landing', component: LandingComponent},
   {path: 'auth', loadChildren: () => import('./modules/authentication/authentication.module').then(m => m.AuthenticationModule)},
-  {path: '', loadChildren: () => import('./modules/task/task.module').then(m => m.TaskModule)}
+  {path: 'tasks', loadChildren: () => import('./modules/task/task.module').then(m => m.TaskModule)},
+  {path: '', pathMatch: 'full', redirectTo: 'landing'}
 ];
 
 @NgModule({
