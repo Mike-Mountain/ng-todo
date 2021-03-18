@@ -4,6 +4,7 @@ import {SessionStore} from './session.store';
 import {BaseHttpService} from '../../../shared/services/base-http/base-http.service';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {LoginFormModel} from './session.model';
 
 @Injectable({providedIn: 'root'})
 export class SessionService extends BaseHttpService<any> {
@@ -13,7 +14,7 @@ export class SessionService extends BaseHttpService<any> {
     super(http);
   }
 
-  public login(data: { username: string, password: string }): Observable<any> {
+  public login(data: LoginFormModel): Observable<any> {
     const url = super.setUrl('auth/login');
     return super._post(url, data).pipe(
       tap(response => {

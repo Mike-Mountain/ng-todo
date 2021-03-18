@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {SessionService} from '../../store/session/session.service';
-import {SessionQuery} from '../../store/session/session.query';
+import {FormGroup} from '@angular/forms';
+import {LoginFormModel} from '../../store/session/session.model';
+import {loginFields} from '../../forms/login.form';
+import {FormlyFieldConfig} from '@ngx-formly/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,21 +13,20 @@ import {SessionQuery} from '../../store/session/session.query';
 })
 export class LoginComponent implements OnInit {
 
-  username: string | undefined;
-  password: string | undefined;
+  public form = new FormGroup({});
+  public model: LoginFormModel = new LoginFormModel({});
+  public fields: FormlyFieldConfig[] = loginFields;
 
-  constructor(private sessionService: SessionService) {
+  constructor(private sessionService: SessionService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
   login(): void {
-    if (this.username && this.password) {
-      this.sessionService.login({
-        username: this.username,
-        password: this.password
-      }).subscribe();
-    }
+    this.sessionService.login(this.model).subscribe(() => {
+      this.router.navigateByUrl('');
+    });
   }
 }

@@ -2,34 +2,20 @@
   <div class="card auth-card">
     <div class="card-body">
       <div class="auth-logo">
-        <img src="" alt="logo">
+        <img src="assets/images/angular_shield.png" alt="logo">
       </div>
       <h2 class="text-center">Login</h2>
       <hr class="w-75 mx-auto">
-      <form class="form">
-        <div class="form-control">
-          <label>
-            Username
-            <input
-              type="text"
-              name="username"
-              [(ngModel)]="username"
-            >
-          </label>
+      <form class="form" [formGroup]="form" (ngSubmit)="login()">
+        <formly-form
+          [form]="form"
+          [fields]="fields"
+          [model]="model"
+        ></formly-form>
+        <div class="auth-buttons">
+          <button type="submit" class="submit-button">Login</button>
+          <button type="button" class="action-button" routerLink="/auth/register">Register</button>
         </div>
-
-        <div class="form-control">
-          <label>
-            Password
-            <input
-              type="password"
-              name="password"
-              [(ngModel)]="password"
-            >
-          </label>
-        </div>
-
-        <button (click)="login()">Login</button>
       </form>
     </div>
   </div>

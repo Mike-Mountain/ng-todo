@@ -23,6 +23,10 @@
     "@angular/router": "~11.0.1",
     "@datorama/akita": "^6.1.2",
     "@datorama/akita-ng-entity-service": "^6.0.0",
+    "@ngx-formly/bootstrap": "^5.0.0",
+    "@ngx-formly/core": "^5.0.0",
+    "@ngx-formly/schematics": "^5.10.15",
+    "bootstrap": "^4.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

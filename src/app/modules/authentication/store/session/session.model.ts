@@ -20,3 +20,13 @@ export function createInitialState(): SessionState {
 export function createSession(user: SessionUser, token: string): SessionState {
   return {user, token};
 }
+
+export class LoginFormModel {
+  username: string | undefined;
+  password: string | undefined;
+
+  constructor(options: Partial<LoginFormModel>) {
+    this.username = options?.username;
+    this.password = options?.password;
+  }
+}
