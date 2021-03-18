@@ -2,7 +2,9 @@
   <div class="app-container">
     <div class="header">
       <div class="menu-button">
-        <button>#</button>
+        <button (click)="toggleMenu()">
+          #
+        </button>
       </div>
       <div class="welcome">
         <!--// TODO: If user, display username -->
@@ -14,7 +16,7 @@
       <div class="progress">
       </div>
     </div>
-    <aside class="menu">
+    <aside class="menu" (click)="toggleMenu()" [@toggleMenu]="menuState">
       <app-menu></app-menu>
     </aside>
     <main class="content">
