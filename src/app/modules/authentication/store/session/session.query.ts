@@ -12,14 +12,13 @@ export class SessionQuery extends Query<SessionState> {
     filter(({user}) => toBoolean(user)),
     map((x) => `${(x.user?.username)}`)
   );
-  private isLoggedIn$ = this.select(({user}) => toBoolean(user));
 
   constructor(protected store: SessionStore) {
     super(store);
   }
 
   isLoggedIn(): boolean {
-    return toBoolean(this.isLoggedIn$);
+    return this.getValue().token !== undefined;
   }
 
 }

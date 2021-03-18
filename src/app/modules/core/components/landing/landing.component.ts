@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SessionQuery} from '../../../authentication/store/session/session.query';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  public isLoggedIn = false;
+
+  constructor(private sessionQuery: SessionQuery) {
+  }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.sessionQuery.isLoggedIn();
   }
 
 }
