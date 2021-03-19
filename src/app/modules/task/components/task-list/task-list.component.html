@@ -1,1 +1,80 @@
-<p>task-list works!</p>
+<section class="task-list">
+  <div class="tabs">
+    <button
+      class="tab-button"
+      [class.active-tab]="activeTab === 'open' && masterList.length > 0"
+      [class.disabled]="masterList.length <= 0"
+      [disabled]="masterList.length <= 0"
+      (click)="changeTab('open')"
+    >
+      Open
+    </button>
+    <button
+      class="tab-button"
+      [class.active-tab]="activeTab === 'inProgress' && masterList.length > 0"
+      [class.disabled]="masterList.length <= 0"
+      [disabled]="masterList.length <= 0"
+      (click)="changeTab('inProgress')"
+    >
+      In Progress
+    </button>
+    <button
+      class="tab-button"
+      [class.active-tab]="activeTab === 'complete' && masterList.length > 0"
+      [class.disabled]="masterList.length <= 0"
+      [disabled]="masterList.length <= 0"
+      (click)="changeTab('complete')"
+    >
+      Complete
+    </button>
+  </div>
+  <ng-container *ngIf="masterList.length > 0; else noTasks">
+    <ng-container [ngSwitch]="activeTab">
+      <ng-container *ngSwitchCase="'open'">
+        <ng-container *ngIf="filteredTasks.open.length > 0; else noOpenTasks">
+          <ng-container *ngFor="let task of filteredTasks.open">
+            <app-task-list-item
+              [task]="task"
+            ></app-task-list-item>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'inProgress'">
+        <ng-container *ngIf="filteredTasks.inProgress.length > 0; else noInProgressTasks">
+          <ng-container *ngFor="let task of filteredTasks.inProgress">
+            <app-task-list-item
+              [task]="task"
+            ></app-task-list-item>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'complete'">
+        <ng-container *ngIf="filteredTasks.complete.length > 0; else noCompleteTasks">
+          <ng-container *ngFor="let task of filteredTasks.complete">
+            <app-task-list-item
+              [task]="task"
+            ></app-task-list-item>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</section>
+
+<ng-template #noTasks>
+  <h5 class="text-center mt-4">You have not created any tasks yet.</h5>
+</ng-template>
+
+<ng-template #noOpenTasks>
+  <h5 class="text-center mt-4">Congratulations. You have no open tasks!</h5>
+</ng-template>
+
+<ng-template #noInProgressTasks>
+  <h5 class="text-center mt-4">You have no tasks in progress.</h5>
+</ng-template>
+
+<ng-template #noCompleteTasks>
+  <h5 class="text-center mt-4">Oh no! None of your tasks are complete!</h5>
+</ng-template>

@@ -1,0 +1,22 @@
+@import "src/scss/variables/variables";
+
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.tab-button {
+  border: 1px solid transparent;
+  width: 50%;
+  background: rgba($secondary, 0.3);
+  transition: all .2s ease;
+}
+
+.active-tab {
+  background: rgba($secondary, 0.6);
+  border-color: rgba($secondary, 0.8);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+}

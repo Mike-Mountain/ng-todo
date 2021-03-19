@@ -1,0 +1,16 @@
+<div class="task-list-item" *ngIf="task">
+  <div class="task-details">
+    <div class="icon">
+      <img class="todo-icon" src="assets/images/angular_shield.png" alt="todo-icon">
+    </div>
+    <div class="details">
+      <h4>{{task.title}}</h4>
+      <!--// TODO: Truncate the description-->
+      <p>{{task.description}}</p>
+    </div>
+    <div class="time">
+      <p>{{date | date : 'shortTime'}}</p>
+    </div>
+  </div>
+  <hr class="w-100 m-1">
+</div>

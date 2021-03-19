@@ -17,7 +17,7 @@
   max-width: 450px;
   box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.4);
   display: grid;
-  grid-template-rows: 30% 1fr;
+  grid-template-rows: 25% 1fr;
   grid-template-columns: 0 1fr;
   background: white;
   z-index: 5;
@@ -111,4 +111,5 @@
   background: white;
   width: 100.5%;
   margin-left: -.25%;
+  overflow-y: auto;
 }
