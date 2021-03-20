@@ -14,13 +14,18 @@
     </div>
     <div class="actions">
       <ng-container *ngIf="task.status === 'todo'">
-        <button class="btn btn-outline-success btn-sm">
+        <button class="btn btn-outline-success btn-sm" (click)="updateStatus($event, 'complete')">
           <i class="fas fa-check"></i>
         </button>
-        <button class="btn btn-outline-info btn-sm">
-          <i class="far fa-edit"></i>
+      </ng-container>
+      <ng-container *ngIf="task.status === 'complete'">
+        <button class="btn btn-outline-primary btn-sm" (click)="updateStatus($event, 'todo')">
+          <i class="fas fa-undo"></i>
         </button>
       </ng-container>
+        <button class="btn btn-outline-info btn-sm" (click)="openModal($event)">
+          <i class="far fa-edit"></i>
+        </button>
     </div>
   </div>
   <hr class="w-80 ml-auto">

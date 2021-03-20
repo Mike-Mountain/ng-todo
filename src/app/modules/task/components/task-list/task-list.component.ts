@@ -26,11 +26,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    const obs$ = this.taskQuery.getHasCache() ?
-      this.taskQuery.selectAll() :
-      this.taskService.get<Task[]>();
-
-    obs$.pipe(takeUntil(this.destroyed$)).subscribe(tasks => {
+    if (!this.taskQuery.getHasCache()) {
+      this.taskService.get<Task[]>().subscribe();
+    }
+    this.taskQuery.selectAll().pipe(takeUntil(this.destroyed$)).subscribe(tasks => {
+      this.masterList = [];
       this.masterList = tasks.map(task => createTask(task));
       this.FilterTasks(this.masterList);
     });

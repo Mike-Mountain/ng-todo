@@ -4,3 +4,11 @@
   border-radius: 50%;
   padding: 0;
 }
+
+
+@media screen and (min-width: 450px) {
+  .custom-modal {
+    width: 25rem;
+    margin-top: 4rem;
+  }
+}

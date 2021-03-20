@@ -8,6 +8,7 @@ import {TaskListItemComponent} from './components/task-list-item/task-list-item.
 import {SharedModule} from '../shared/shared.module';
 import {TaskStatusPipe} from './pipes/task-status/task-status.pipe';
 import {TaskPriorityPipe} from './pipes/task-priority/task-priority.pipe';
+import { EditTaskComponent } from './components/edit-task/edit-task.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {TaskPriorityPipe} from './pipes/task-priority/task-priority.pipe';
     TaskDetailsComponent,
     TaskListItemComponent,
     TaskStatusPipe,
-    TaskPriorityPipe
+    TaskPriorityPipe,
+    EditTaskComponent
   ],
   imports: [
     CommonModule,

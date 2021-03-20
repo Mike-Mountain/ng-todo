@@ -1,5 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Task} from '../../store/task.model';
+import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
+import {EditTaskComponent} from '../edit-task/edit-task.component';
+import {TaskService} from '../../store/task.service';
 
 @Component({
   selector: 'app-task-list-item',
@@ -10,12 +13,29 @@ export class TaskListItemComponent implements OnInit {
 
   @Input() task: Task | undefined;
 
-  public date = new Date().getTime();
+  private modalRef: BsModalRef | undefined;
+  private config: ModalOptions = {
+    class: 'custom-modal'
+  };
 
-  constructor() {
+  constructor(private modalService: BsModalService,
+              private taskService: TaskService) {
   }
 
   ngOnInit(): void {
+  }
+
+  public openModal(event: Event): void {
+    this.modalRef = this.modalService.show(EditTaskComponent, this.config);
+    this.modalRef.content.closeBtnName = 'Cancel';
+    event.stopImmediatePropagation();
+  }
+
+  public updateStatus(event: Event, status: string): void {
+    if (this.task) {
+      this.taskService.update<Task>(this.task.id, {status}).subscribe();
+    }
+    event.stopImmediatePropagation();
   }
 
 }

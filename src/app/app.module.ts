@@ -12,6 +12,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormlyModule} from '@ngx-formly/core';
 import {FormlyBootstrapModule} from '@ngx-formly/bootstrap';
+import {ModalModule} from 'ngx-bootstrap/modal';
 import {TokenInterceptor} from './modules/core/interceptors/token-interceptor/token.interceptor';
 
 @NgModule({
@@ -27,7 +28,8 @@ import {TokenInterceptor} from './modules/core/interceptors/token-interceptor/to
     environment.production ? [] : AkitaNgDevtools.forRoot(),
     ReactiveFormsModule,
     FormlyModule.forRoot({extras: {lazyRender: true}}),
-    FormlyBootstrapModule
+    FormlyBootstrapModule,
+    ModalModule.forRoot()
   ],
   providers: [
     {
