@@ -1,1 +1,35 @@
-<p>task-details works!</p>
+<section class="task-details">
+  <div class="card w-80">
+    <div class="back">
+      <button class="back-button" (click)="goBack()">
+        <i class="fas fa-long-arrow-alt-left"></i>
+      </button>
+    </div>
+    <div class="card-body">
+      <ng-container *ngIf="taskDetails; else noDetails">
+        <h2 class="text-center">{{taskDetails.title}}</h2>
+        <hr class="w-75 mx-auto">
+        <p class="text-center">{{taskDetails.description}}</p>
+        <div class="task-details-group">
+          <p>Status: {{taskDetails.status | taskStatus}}</p>
+          <p>
+            Priority: <i [class]="taskDetails.priority | taskPriority"></i>
+          </p>
+        </div>
+        <hr class="w-85 mx-auto my-3">
+        <div class="flex-between">
+          <button class="btn btn-outline-success w-45 mx-auto">Complete Task</button>
+          <button class="btn btn-outline-info w-45 mx-auto">Edit Task</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="task-details-image">
+    <img src="assets/images/undraw_profile_details_f8b7.svg" alt="details_illustration">
+  </div>
+</section>
+
+<ng-template #noDetails>
+  <h3 class="text-center">There are no Task Details.</h3>
+</ng-template>

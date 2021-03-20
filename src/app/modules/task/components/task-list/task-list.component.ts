@@ -16,7 +16,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   public masterList: Task[] = [];
   public filteredTasks = {
     open: [createTask({})],
-    inProgress: [createTask({})],
     complete: [createTask({})]
   };
 
@@ -49,7 +48,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   private FilterTasks(masterList: Task[]): void {
     this.filteredTasks = {
       open: masterList.filter(task => task.status === 'todo'),
-      inProgress: masterList.filter(task => task.status === 'inProgress'),
       complete: masterList.filter(task => task.status === 'complete')
     };
   }

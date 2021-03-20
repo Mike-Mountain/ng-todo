@@ -1,4 +1,8 @@
-<div class="task-list-item" *ngIf="task">
+<div
+  *ngIf="task"
+  class="task-list-item"
+  [routerLink]="task.id | toString"
+>
   <div class="task-details">
     <div class="icon">
       <img class="todo-icon" src="assets/images/angular_shield.png" alt="todo-icon">
@@ -8,9 +12,16 @@
       <!--// TODO: Truncate the description-->
       <p>{{task.description}}</p>
     </div>
-    <div class="time">
-      <p>{{date | date : 'shortTime'}}</p>
+    <div class="actions">
+      <ng-container *ngIf="task.status === 'todo'">
+        <button class="btn btn-outline-success btn-sm">
+          <i class="fas fa-check"></i>
+        </button>
+        <button class="btn btn-outline-info btn-sm">
+          <i class="far fa-edit"></i>
+        </button>
+      </ng-container>
     </div>
   </div>
-  <hr class="w-100 m-1">
+  <hr class="w-80 ml-auto">
 </div>

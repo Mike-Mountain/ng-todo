@@ -11,15 +11,6 @@
     </button>
     <button
       class="tab-button"
-      [class.active-tab]="activeTab === 'inProgress' && masterList.length > 0"
-      [class.disabled]="masterList.length <= 0"
-      [disabled]="masterList.length <= 0"
-      (click)="changeTab('inProgress')"
-    >
-      In Progress
-    </button>
-    <button
-      class="tab-button"
       [class.active-tab]="activeTab === 'complete' && masterList.length > 0"
       [class.disabled]="masterList.length <= 0"
       [disabled]="masterList.length <= 0"
@@ -33,16 +24,6 @@
       <ng-container *ngSwitchCase="'open'">
         <ng-container *ngIf="filteredTasks.open.length > 0; else noOpenTasks">
           <ng-container *ngFor="let task of filteredTasks.open">
-            <app-task-list-item
-              [task]="task"
-            ></app-task-list-item>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'inProgress'">
-        <ng-container *ngIf="filteredTasks.inProgress.length > 0; else noInProgressTasks">
-          <ng-container *ngFor="let task of filteredTasks.inProgress">
             <app-task-list-item
               [task]="task"
             ></app-task-list-item>
