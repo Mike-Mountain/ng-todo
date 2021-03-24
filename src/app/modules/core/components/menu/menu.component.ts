@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {SessionService} from '../../../authentication/store/session/session.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,6 +9,7 @@ import {Router} from '@angular/router';
 export class MenuComponent implements OnInit {
 
   @Input() isLoggedIn: boolean | undefined;
+  @Output() toggleMenu = new EventEmitter<boolean>();
 
   constructor(private sessionService: SessionService) {
   }
@@ -19,5 +19,10 @@ export class MenuComponent implements OnInit {
 
   public logout(): void {
     this.sessionService.logout();
+  }
+
+  public closeMenu(event: Event): void {
+    this.toggleMenu.emit(true);
+    event.stopImmediatePropagation();
   }
 }

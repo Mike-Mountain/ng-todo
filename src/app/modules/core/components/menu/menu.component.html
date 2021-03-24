@@ -1,19 +1,53 @@
 <section class="menu-container">
   <div class="menu-header">
-    <h2>Menu</h2>
+    <div class="w-33"></div>
+    <div class="w-33 flex-center">
+      <h2>Menu</h2>
+    </div>
+    <div class="w-33 flex-end">
+      <button class="close-btn flex-center">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
   </div>
   <nav class="navigation">
-    <a class="nav-item" routerLink="/">Home</a>
-    <a class="nav-item" routerLink="/tasks">Tasks</a>
+    <a
+      class="nav-item"
+      routerLink="/"
+      routerLinkActive="active-nav-item"
+    >
+      Home
+    </a>
     <ng-container *ngIf="isLoggedIn">
-      <a class="nav-item" (click)="logout()">Logout</a>
+      <a
+        class="nav-item"
+        routerLink="/tasks"
+        routerLinkActive="active-nav-item"
+      >
+        Tasks
+      </a>
+      <a
+        class="nav-item"
+        (click)="logout()"
+      >
+        Logout
+      </a>
     </ng-container>
     <ng-container *ngIf="!isLoggedIn">
-      <a class="nav-item" routerLink="/auth/login">Login</a>
-      <a class="nav-item" routerLink="/auth/register">Register</a>
+      <a
+        class="nav-item"
+        routerLink="/auth/login"
+        routerLinkActive="active-nav-item"
+      >
+        Login
+      </a>
+      <a
+        class="nav-item"
+        routerLink="/auth/register"
+        routerLinkActive="active-nav-item"
+      >
+        Register
+      </a>
     </ng-container>
   </nav>
-  <div class="theme-toggle">
-    Toggle theme
-  </div>
 </section>

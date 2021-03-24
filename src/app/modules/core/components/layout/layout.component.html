@@ -34,6 +34,7 @@
     <aside class="menu" (click)="toggleMenu()" [@toggleMenu]="menuState">
       <app-menu
         [isLoggedIn]="isLoggedIn"
+        (toggleMenu)="toggleMenu()"
       ></app-menu>
     </aside>
     <main class="content">

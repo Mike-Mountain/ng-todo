@@ -4,7 +4,7 @@ import {
   state,
   style,
   animate,
-  transition, useAnimation
+  transition
 } from '@angular/animations';
 import {SessionQuery} from '../../../authentication/store/session/session.query';
 import {Observable, ReplaySubject} from 'rxjs';
@@ -13,7 +13,6 @@ import {TaskQuery} from '../../../task/store/task.query';
 import {takeUntil} from 'rxjs/operators';
 import {TaskService} from '../../../task/store/task.service';
 import {Task} from '../../../task/store/task.model';
-import {menuTransition} from '../../animations/layout.animation';
 
 @Component({
   selector: 'app-layout',
@@ -76,9 +75,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   public toggleMenu(): void {
+    console.log(this.menuState);
     this.menuState === 'closed' ?
       this.menuState = 'open' :
       this.menuState = 'closed';
+    console.log(this.menuState);
   }
 
 }
