@@ -1,9 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {TaskService} from '../../store/task.service';
 import {TaskQuery} from '../../store/task.query';
 import {ReplaySubject} from 'rxjs';
 import {createTask, Task} from '../../store/task.model';
 import {takeUntil, tap} from 'rxjs/operators';
+import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
+import {EditTaskComponent} from '../edit-task/edit-task.component';
 
 @Component({
   selector: 'app-task-list',
@@ -12,6 +14,7 @@ import {takeUntil, tap} from 'rxjs/operators';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
 
+  public modalRef: BsModalRef | undefined;
   public activeTab = 'open';
   public masterList: Task[] = [];
   public filteredTasks = {
@@ -20,8 +23,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
   };
 
   private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
+  private config: ModalOptions = {
+    class: 'custom-modal'
+  };
 
   constructor(private taskService: TaskService,
+              private modalService: BsModalService,
               private taskQuery: TaskQuery) {
   }
 
@@ -43,6 +50,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   public changeTab(tab: string): void {
     this.activeTab = tab;
+  }
+
+  public createTask(template: TemplateRef<EditTaskComponent>): void {
+    this.modalRef = this.modalService.show(template, this.config);
   }
 
   private FilterTasks(masterList: Task[]): void {

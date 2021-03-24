@@ -2,7 +2,14 @@
   <div class="flex-center w-100">
     <div class="w-33"></div>
     <div class="w-33 flex-center">
-      <h1 class="text-center">Edit Task</h1>
+      <h1 class="text-center">
+        <ng-container *ngIf="task.id">
+          Edit Task
+        </ng-container>
+        <ng-container *ngIf="!task.id">
+          Create Task
+        </ng-container>
+      </h1>
     </div>
     <div class="w-33 flex-end flex-align-start">
       <button class="close-btn flex-center" (click)="closeModal()">
@@ -11,7 +18,7 @@
     </div>
   </div>
   <hr class="w-75 mx-auto">
-  <form [formGroup]="form" (ngSubmit)="updateTask()">
+  <form [formGroup]="form" (ngSubmit)="createOrUpdate()">
     <formly-form
       [form]="form"
       [model]="task"
@@ -29,7 +36,12 @@
         class="btn btn-outline-secondary w-45"
         type="submit"
       >
-        Update
+        <ng-container *ngIf="task?.id">
+          Update
+        </ng-container>
+        <ng-container *ngIf="!task?.id">
+          Create
+        </ng-container>
       </button>
     </div>
   </form>

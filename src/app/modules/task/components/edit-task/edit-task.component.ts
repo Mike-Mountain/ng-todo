@@ -22,17 +22,34 @@ export class EditTaskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.task) {
+      this.task = createTask({});
+    }
   }
 
-  public updateTask(): void {
+  public createOrUpdate(): void {
     if (this.task) {
-      this.taskService.update<Task>(this.task.id, this.task).subscribe(() => {
-        this.closeModal();
-      });
+      if (this.task.id) {
+        this.updateTask(this.task);
+      } else {
+        this.createTask(this.task);
+      }
     }
   }
 
   public closeModal(): void {
     this.modalRef?.hide();
+  }
+
+  private updateTask(task: Task): void {
+    this.taskService.update<Task>(task.id, task).subscribe(() => {
+      this.closeModal();
+    });
+  }
+
+  private createTask(task: Task): void {
+    this.taskService.add<Task>(task).subscribe(() => {
+      this.closeModal();
+    });
   }
 }
