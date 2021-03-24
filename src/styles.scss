@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+@import "scss/variables/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "scss/utils/all";
 @import "scss/components/all";
 @import "scss/shame";
-@import "scss/variables/variables";
 
 body {
   font-family: 'Open Sans Condensed', sans-serif;

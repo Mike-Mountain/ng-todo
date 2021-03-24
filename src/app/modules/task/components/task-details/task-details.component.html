@@ -18,8 +18,28 @@
         </div>
         <hr class="w-85 mx-auto my-3">
         <div class="flex-between">
-          <button class="btn btn-outline-success w-45 mx-auto">Complete Task</button>
-          <button class="btn btn-outline-info w-45 mx-auto">Edit Task</button>
+          <ng-container *ngIf="taskDetails.status === 'todo'">
+            <button
+              class="btn btn-outline-success w-45 mx-auto"
+              (click)="toggleTaskState('complete')"
+            >
+              Complete Task
+            </button>
+          </ng-container>
+          <ng-container *ngIf="taskDetails.status === 'complete'">
+            <button
+              class="btn btn-outline-success w-45 mx-auto"
+              (click)="toggleTaskState('todo')"
+            >
+              Open Task
+            </button>
+          </ng-container>
+          <button
+            class="btn btn-outline-info w-45 mx-auto"
+            (click)="openModal(modalTemplate)"
+          >
+            Edit Task
+          </button>
         </div>
       </ng-container>
     </div>
@@ -32,4 +52,11 @@
 
 <ng-template #noDetails>
   <h3 class="text-center">There are no Task Details.</h3>
+</ng-template>
+
+<ng-template #modalTemplate>
+  <app-edit-task
+    [task]="taskDetails"
+    [modalRef]="modalRef"
+  ></app-edit-task>
 </ng-template>

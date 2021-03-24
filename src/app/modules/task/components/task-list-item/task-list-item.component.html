@@ -9,8 +9,7 @@
     </div>
     <div class="details">
       <h4>{{task.title}}</h4>
-      <!--// TODO: Truncate the description-->
-      <p>{{task.description}}</p>
+      <p class="truncate">{{task.description}}</p>
     </div>
     <div class="actions">
       <ng-container *ngIf="task.status === 'todo'">
@@ -23,10 +22,17 @@
           <i class="fas fa-undo"></i>
         </button>
       </ng-container>
-        <button class="btn btn-outline-info btn-sm" (click)="openModal($event)">
+        <button class="btn btn-outline-info btn-sm" (click)="openModal($event, modalTemplate)">
           <i class="far fa-edit"></i>
         </button>
     </div>
   </div>
   <hr class="w-80 ml-auto">
 </div>
+
+<ng-template #modalTemplate>
+  <app-edit-task
+    [task]="task"
+    [modalRef]="modalRef"
+  ></app-edit-task>
+</ng-template>

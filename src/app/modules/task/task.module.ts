@@ -9,6 +9,8 @@ import {SharedModule} from '../shared/shared.module';
 import {TaskStatusPipe} from './pipes/task-status/task-status.pipe';
 import {TaskPriorityPipe} from './pipes/task-priority/task-priority.pipe';
 import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {FormlyModule} from '@ngx-formly/core';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { EditTaskComponent } from './components/edit-task/edit-task.component';
   imports: [
     CommonModule,
     TaskRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    FormlyModule
   ]
 })
 export class TaskModule {

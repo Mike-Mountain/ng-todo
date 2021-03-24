@@ -1,1 +1,26 @@
-<p>edit-task works!</p>
+<section class="modal-body">
+  <h1 class="text-center">Edit Task</h1>
+  <hr class="w-75 mx-auto">
+  <form [formGroup]="form" (ngSubmit)="updateTask()">
+    <formly-form
+      [form]="form"
+      [model]="task"
+      [fields]="fields"
+    ></formly-form>
+    <div class="flex-between">
+      <button
+        class="btn btn-outline-danger w-45"
+        type="button"
+        (click)="closeModal()"
+      >
+        Cancel
+      </button>
+      <button
+        class="btn btn-outline-primary w-45"
+        type="submit"
+      >
+        Update
+      </button>
+    </div>
+  </form>
+</section>

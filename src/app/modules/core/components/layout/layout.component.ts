@@ -1,14 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {
   trigger,
   state,
   style,
   animate,
-  transition
+  transition, useAnimation
 } from '@angular/animations';
 import {SessionQuery} from '../../../authentication/store/session/session.query';
-import {Observable} from 'rxjs';
+import {Observable, ReplaySubject} from 'rxjs';
 import {SessionUser} from '../../../authentication/store/session/session.model';
+import {TaskQuery} from '../../../task/store/task.query';
+import {takeUntil} from 'rxjs/operators';
+import {TaskService} from '../../../task/store/task.service';
+import {Task} from '../../../task/store/task.model';
+import {menuTransition} from '../../animations/layout.animation';
 
 @Component({
   selector: 'app-layout',
@@ -26,28 +31,51 @@ import {SessionUser} from '../../../authentication/store/session/session.model';
         opacity: '0',
         zIndex: '-10',
       })),
-      transition('open => closed', animate('.1s linear')),
-      transition('closed => open', animate('.1s linear'))
+      transition('open => closed', animate('.2s ease-in')),
+      transition('closed => open', animate('.2s ease-out'))
     ])
   ]
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements OnInit, OnDestroy {
 
-  menuState = 'closed';
-  user$: Observable<SessionUser | undefined> | undefined;
-  isLoggedIn = false;
+  public menuState = 'closed';
+  public user$: Observable<SessionUser | undefined> | undefined;
+  public isLoggedIn = false;
+  public taskProgress = 0;
+  private destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
-  constructor(private sessionQuery: SessionQuery) {
+  constructor(private sessionQuery: SessionQuery,
+              private taskService: TaskService,
+              private taskQuery: TaskQuery) {
   }
 
   ngOnInit(): void {
-    this.sessionQuery.select().subscribe(session => {
+    this.sessionQuery.select().pipe(takeUntil(this.destroyed$)).subscribe(session => {
       this.isLoggedIn = session.token !== undefined;
+      if (this.isLoggedIn) {
+        if (!this.taskQuery.getHasCache()) {
+          this.taskService.get<Task[]>().subscribe();
+        }
+
+        this.taskQuery.selectAll().pipe(takeUntil(this.destroyed$)).subscribe((tasks) => {
+          if (tasks?.length > 0) {
+            const complete = tasks.filter(task => task.status === 'complete');
+            const a = complete.length;
+            const b = tasks.length;
+            this.taskProgress = Math.round(((a / b) * 100) * 10) / 10;
+          }
+        });
+      }
     });
     this.user$ = this.sessionQuery.loggedInUser$;
   }
 
-  toggleMenu(): void {
+  ngOnDestroy(): void {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
+  }
+
+  public toggleMenu(): void {
     this.menuState === 'closed' ?
       this.menuState = 'open' :
       this.menuState = 'closed';

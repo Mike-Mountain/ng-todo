@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {Task} from '../../store/task.model';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {EditTaskComponent} from '../edit-task/edit-task.component';
@@ -13,7 +13,7 @@ export class TaskListItemComponent implements OnInit {
 
   @Input() task: Task | undefined;
 
-  private modalRef: BsModalRef | undefined;
+  public modalRef: BsModalRef | undefined;
   private config: ModalOptions = {
     class: 'custom-modal'
   };
@@ -25,9 +25,8 @@ export class TaskListItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public openModal(event: Event): void {
-    this.modalRef = this.modalService.show(EditTaskComponent, this.config);
-    this.modalRef.content.closeBtnName = 'Cancel';
+  public openModal(event: Event, template: TemplateRef<EditTaskComponent>): void {
+    this.modalRef = this.modalService.show(template, this.config);
     event.stopImmediatePropagation();
   }
 

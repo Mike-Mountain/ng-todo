@@ -14,6 +14,7 @@ import {FormlyModule} from '@ngx-formly/core';
 import {FormlyBootstrapModule} from '@ngx-formly/bootstrap';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {TokenInterceptor} from './modules/core/interceptors/token-interceptor/token.interceptor';
+import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {TokenInterceptor} from './modules/core/interceptors/token-interceptor/to
     ReactiveFormsModule,
     FormlyModule.forRoot({extras: {lazyRender: true}}),
     FormlyBootstrapModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    ProgressbarModule.forRoot()
   ],
   providers: [
     {

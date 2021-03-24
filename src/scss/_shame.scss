@@ -5,6 +5,11 @@
   padding: 0;
 }
 
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 @media screen and (min-width: 450px) {
   .custom-modal {
@@ -12,3 +17,4 @@
     margin-top: 4rem;
   }
 }
+
