@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {MenuComponent} from './components/menu/menu.component';
 import { LandingComponent } from './components/landing/landing.component';
 import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,11 +17,12 @@ import {ProgressbarModule} from 'ngx-bootstrap/progressbar';
   exports: [
     LayoutComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        ProgressbarModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    ProgressbarModule,
+    SharedModule
+  ]
 })
 export class CoreModule {
 }

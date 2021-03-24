@@ -28,9 +28,9 @@
 }
 
 .create-task-button {
-  position: absolute;
+  position: sticky;
   bottom: .75rem;
-  right: .75rem;
+  left: 85%;
   width: 2.5rem;
   height: 2.5rem;
   border: 1px solid $secondary;

@@ -75,11 +75,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   public toggleMenu(): void {
-    console.log(this.menuState);
     this.menuState === 'closed' ?
       this.menuState = 'open' :
       this.menuState = 'closed';
-    console.log(this.menuState);
   }
 
 }
