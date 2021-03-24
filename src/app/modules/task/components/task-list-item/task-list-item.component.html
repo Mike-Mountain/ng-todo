@@ -1,15 +1,25 @@
 <div
   *ngIf="task"
   class="task-list-item"
-  [routerLink]="task.id | toString"
 >
   <div class="task-details">
     <div class="icon">
       <img class="todo-icon" src="assets/images/angular_shield.png" alt="todo-icon">
     </div>
     <div class="details">
-      <h4>{{task.title}}</h4>
+      <h3>{{task.title}}</h3>
       <p class="truncate">{{task.description}}</p>
+      <div class="flex-around">
+        <button class="btn btn-outline-info btn-sm action-btn" (click)="openModal($event, modalTemplate)">
+          <i class="far fa-edit"></i>
+        </button>
+        <button class="btn btn-outline-danger btn-sm action-btn" (click)="deleteTask($event)">
+          <i class="far fa-trash-alt"></i>
+        </button>
+        <button class="btn btn-outline-secondary btn-sm action-btn" [routerLink]="task.id | toString">
+          <i class="fas fa-info"></i>
+        </button>
+      </div>
     </div>
     <div class="actions">
       <ng-container *ngIf="task.status === 'todo'">
@@ -22,12 +32,6 @@
           <i class="fas fa-undo"></i>
         </button>
       </ng-container>
-      <button class="btn btn-outline-info btn-sm" (click)="openModal($event, modalTemplate)">
-        <i class="far fa-edit"></i>
-      </button>
-      <button class="btn btn-outline-danger btn-sm" (click)="deleteTask($event)">
-        <i class="far fa-trash-alt"></i>
-      </button>
     </div>
   </div>
   <hr class="w-80 ml-auto">

@@ -23,7 +23,7 @@
 }
 
 .icon {
-  width: 10%;
+  width: 15%;
 }
 
 .todo-icon {
@@ -33,16 +33,21 @@
 }
 
 .details {
-  width: 63%;
+  width: 70%;
   padding: 0 .75rem;
   text-align: center;
 }
 
 .actions {
-  width: 27%;
+  width: 15%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.action-btn {
+  width: 30%;
+  margin: .25rem 0;
 }
 
 .complete-button {

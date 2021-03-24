@@ -3,10 +3,10 @@
     <div class="w-33"></div>
     <div class="w-33 flex-center">
       <h1 class="text-center">
-        <ng-container *ngIf="task.id">
+        <ng-container *ngIf="task?.id">
           Edit Task
         </ng-container>
-        <ng-container *ngIf="!task.id">
+        <ng-container *ngIf="!task?.id">
           Create Task
         </ng-container>
       </h1>
