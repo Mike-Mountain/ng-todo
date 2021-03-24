@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, TemplateRef} from '@angular/core';
-import {Task} from '../../store/task.model';
+import {Task, TaskStatus} from '../../store/task.model';
 import {BsModalRef, BsModalService, ModalOptions} from 'ngx-bootstrap/modal';
 import {EditTaskComponent} from '../edit-task/edit-task.component';
 import {TaskService} from '../../store/task.service';
@@ -30,7 +30,7 @@ export class TaskListItemComponent implements OnInit {
     event.stopImmediatePropagation();
   }
 
-  public updateStatus(event: Event, status: string): void {
+  public updateStatus(event: Event, status: TaskStatus): void {
     if (this.task) {
       this.taskService.update<Task>(this.task.id, {status}).subscribe();
     }

@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ReplaySubject, Subscription} from 'rxjs';
-import {Task} from '../../store/task.model';
+import {Task, TaskStatus} from '../../store/task.model';
 import {TaskService} from '../../store/task.service';
 import {TaskQuery} from '../../store/task.query';
 import {Location} from '@angular/common';
@@ -50,7 +50,7 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
     this.modalRef = this.modalService.show(template, this.config);
   }
 
-  public toggleTaskState(newState: string): void {
+  public toggleTaskState(newState: TaskStatus): void {
     this.taskService.update<Task>(this.taskDetails?.id, {status: newState}).subscribe();
   }
 

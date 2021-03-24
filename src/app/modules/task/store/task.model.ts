@@ -1,10 +1,16 @@
+export type TaskStatus = 'todo' | 'complete';
+
+export type TaskPriority = 'low' | 'medium' | 'high';
+
+export type TaskCategory = 'personal'| 'work' | 'home';
+
 export interface Task {
   id: number;
   title: string;
   description: string;
-  priority: any;
-  status: any;
-  category: any;
+  priority: TaskPriority;
+  status: TaskStatus;
+  category: TaskCategory;
   ownerId: number;
 }
 
