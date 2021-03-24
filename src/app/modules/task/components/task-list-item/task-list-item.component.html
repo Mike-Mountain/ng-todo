@@ -22,9 +22,12 @@
           <i class="fas fa-undo"></i>
         </button>
       </ng-container>
-        <button class="btn btn-outline-info btn-sm" (click)="openModal($event, modalTemplate)">
-          <i class="far fa-edit"></i>
-        </button>
+      <button class="btn btn-outline-info btn-sm" (click)="openModal($event, modalTemplate)">
+        <i class="far fa-edit"></i>
+      </button>
+      <button class="btn btn-outline-danger btn-sm" (click)="deleteTask($event)">
+        <i class="fas fa-trash"></i>
+      </button>
     </div>
   </div>
   <hr class="w-80 ml-auto">

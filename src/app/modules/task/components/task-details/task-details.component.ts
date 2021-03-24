@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ReplaySubject, Subscription} from 'rxjs';
-import {Task, TaskStatus} from '../../store/task.model';
+import {createTask, Task, TaskStatus} from '../../store/task.model';
 import {TaskService} from '../../store/task.service';
 import {TaskQuery} from '../../store/task.query';
 import {Location} from '@angular/common';
@@ -36,7 +36,9 @@ export class TaskDetailsComponent implements OnInit, OnDestroy {
         this.taskService.get<Task>().subscribe();
       }
       this.taskQuery.selectEntity(params.id).pipe(takeUntil(this.destroyed$)).subscribe(task => {
-        this.taskDetails = task;
+        if (task) {
+          this.taskDetails = createTask(task);
+        }
       });
     });
   }

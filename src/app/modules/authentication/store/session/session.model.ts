@@ -30,3 +30,15 @@ export class LoginFormModel {
     this.password = options?.password;
   }
 }
+
+export class RegisterFormModel {
+  username: string | undefined;
+  email: string | undefined;
+  password: string | undefined;
+
+  constructor(options: Partial<RegisterFormModel>) {
+    this.username = options?.username;
+    this.email = options?.email;
+    this.password = options?.password;
+  }
+}

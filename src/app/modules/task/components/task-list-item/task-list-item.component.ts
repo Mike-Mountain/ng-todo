@@ -37,4 +37,10 @@ export class TaskListItemComponent implements OnInit {
     event.stopImmediatePropagation();
   }
 
+  public deleteTask(event: Event): void {
+    if (this.task) {
+      this.taskService.delete<Task>(this.task.id).subscribe();
+    }
+    event.stopImmediatePropagation();
+  }
 }
