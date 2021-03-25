@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {
   trigger,
   state,
@@ -13,6 +13,7 @@ import {TaskQuery} from '../../../task/store/task.query';
 import {takeUntil} from 'rxjs/operators';
 import {TaskService} from '../../../task/store/task.service';
 import {Task} from '../../../task/store/task.model';
+import {ThemeService} from '../../../shared/services/theme/theme.service';
 
 @Component({
   selector: 'app-layout',
@@ -37,6 +38,8 @@ import {Task} from '../../../task/store/task.model';
 })
 export class LayoutComponent implements OnInit, OnDestroy {
 
+  @ViewChild('background') background: ElementRef<HTMLElement> | undefined;
+
   public menuState = 'closed';
   public user$: Observable<SessionUser | undefined> | undefined;
   public isLoggedIn = false;
@@ -45,6 +48,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   constructor(private sessionQuery: SessionQuery,
               private taskService: TaskService,
+              private themeService: ThemeService,
               private taskQuery: TaskQuery) {
   }
 
@@ -64,6 +68,11 @@ export class LayoutComponent implements OnInit, OnDestroy {
             this.taskProgress = Math.round(((a / b) * 100) * 10) / 10;
           }
         });
+      }
+    });
+    this.themeService.selectTheme().pipe(takeUntil(this.destroyed$)).subscribe(theme => {
+      if (this.background) {
+        this.themeService.toggleTheme(this.background.nativeElement, theme);
       }
     });
     this.user$ = this.sessionQuery.loggedInUser$;

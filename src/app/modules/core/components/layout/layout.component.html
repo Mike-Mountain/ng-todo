@@ -1,4 +1,4 @@
-<div class="background">
+<div class="background" #background>
   <div class="app-container">
     <div class="header-image">
       <img src="assets/images/landscape.jpeg" alt="background-image">
@@ -6,7 +6,7 @@
     <div class="header" [ngClass]="isLoggedIn ? 'header-auth' : 'header-pub'">
       <div class="menu-toggle">
         <button class="menu-button" (click)="toggleMenu()">
-          <img src="assets/images/menu.png" alt="menu" width="25">
+          <i class="fas fa-bars fa-lg"></i>
         </button>
       </div>
       <div class="welcome">

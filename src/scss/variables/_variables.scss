@@ -1,3 +1,25 @@
+:root {
+  --primary: #c30e2e;
+  --secondary: #007BFF;
+  --text-color: #575757;
+  --background: #fafcff;
+  --card-bg: #f0f5fc;
+  --line-color: var(--text-color);
+}
+
+[data-theme="dark"] {
+  --text-color: #fafcff;
+  --background: #575757;
+  --card-bg: #4d4d4d;
+  --line-color: var(--text-color);
+}
+
+[data-theme="light"] {
+  --text-color: #575757;
+  --background: #fafcff;
+  --card-bg: #f0f5fc;
+  --line-color: var(--text-color);
+}
+
 $primary: #c30e2e;
 $secondary: #007BFF;
-$background: #c0cee0;

@@ -1,0 +1,36 @@
+body {
+  background: var(--background);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+small,
+button {
+  color: var(--text-color);
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+hr {
+  border-color: var(--line-color);
+}
+
+.card, .modal-body {
+  background: var(--card-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.content, .authentication, .menu-container {
+  background: var(--background);
+  color: var(--text-color);
+}
+
+.progress {
+  background: var(--card-bg);
+}
